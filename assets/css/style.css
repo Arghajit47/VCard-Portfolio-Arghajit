@@ -1974,6 +1974,8 @@ textarea.form-input::-webkit-resizer {
 
   .avatar-box img {
     width: 150px;
+    overflow: hidden;
+    border-radius: 10%;
   }
 
   .info-content .name {
