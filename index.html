@@ -1,1829 +1,556 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vCard - Personal Portfolio</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/images/logo.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vCard - Personal Portfolio</title>
-
-  <!--
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
-
-  <!--
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-
-  <!--
-    - google font link
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
-  <!--
-    - #MAIN
-  -->
-
-  <main>
-
-    <!--
-      - #SIDEBAR
-    -->
-
-    <aside class="sidebar" data-sidebar>
-
-      <div class="sidebar-info">
-
-        <figure class="avatar-box">
-          <img src="./assets/images/Arghajit.jpg" alt="Arghajit Singha" width="80" height = "180">
-        </figure>
-
-        <div class="info-content">
-          <h1 class="name" title="Arghajit Singha">Arghajit Singha</h1>
-
-          <p class="title">QA Automation Engineer III</p>
+  <body>
+    <main>
+      <aside class="sidebar" data-sidebar>
+        <div class="sidebar-info">
+          <figure class="avatar-box">
+            <img
+              src="./assets/images/Arghajit.jpg"
+              alt="Arghajit Singha"
+              width="80"
+              height="180"
+            />
+          </figure>
+          <div class="info-content">
+            <h1 class="name" title="Arghajit Singha">Arghajit Singha</h1>
+            <p class="title">QA Automation Engineer III</p>
+          </div>
+          <button class="info_more-btn" data-sidebar-btn>
+            <span>Show Contacts</span>
+            <ion-icon name="chevron-down"></ion-icon>
+          </button>
         </div>
-
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
-
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
-
-      </div>
-
-      <div class="sidebar-info_more">
-
-        <div class="separator"></div>
-
-        <ul class="contacts-list">
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-
-              <a href="mailto:arghajitsingha47@gmail.com" class="contact-link">arghajitsingha47@gmail.com</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Phone</p>
-
-              <a href="tel:+917908984665" class="contact-link">+91 7908984665</a>
-              <a href="tel:+918759272997" class="contact-link">+91 8759272997</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="1999-10-21">November 19, 1999</time>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Location</p>
-
-              <address>Bengaluru, India</address>
-            </div>
-
-          </li>
-
-        </ul>
-
-        <div class="separator"></div>
-
-        <ul class="social-list">
-
-          <li class="social-item">
-            <a href="https://www.facebook.com/arghajit.singha.7" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="https://youtube.com/@sdetstudio4711" class="social-link">
-              <ion-icon name="logo-youtube"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="https://www.instagram.com/asughan47" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </aside>
-
-
-
-
-
-    <!--
-      - #main-content
-    -->
-
-    <div class="main-content">
-
-      <!--
-        - #NAVBAR
-      -->
-
-      <nav class="navbar">
-
-        <ul class="navbar-list">
-
-          <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Resume</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Blogs</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Videos</button>
-          </li>
-
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Contact</button>
-          </li>
-
-        </ul>
-
-      </nav>
-
-
-
-
-
-      <!--
-        - #ABOUT
-      -->
-
-      <article class="about  active" data-page="about">
-
-        <header>
-          <h2 class="h2 article-title">About me</h2>
-        </header>
-
-        <section class="about-text">
-          <p>
-            Motivated and detail-oriented QA Engineer II with 3+ years of experience in software testing and quality assurance at a leading product-based company.
-          <p>
-            Passionate about ensuring the delivery of robust and high-quality software solutions, I have developed a keen understanding of product lifecycles and customer needs.
-          </p>
-          <p>With strong expertise in test automation frameworks, I have consistently contributed to the successful development and release of complex software products, enhancing our product’s reliability and performance for end-users.          </p>
-        </p>
-        </section>
-
-
-        <!--
-          - service
-        -->
-
-        <section class="service">
-
-          <h3 class="h3 service-title">What i'm doing</h3>
-
-          <ul class="service-list">
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/frontendTesting.png
-                " alt="frontend testing icon" width="40">
+        <div class="sidebar-info_more">
+          <div class="separator"></div>
+          <ul class="contacts-list">
+            <li class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="mail-outline"></ion-icon>
               </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Frontend Testing</h4>
-
-                <p class="service-item-text">
-                  The most modern and high-quality frontend Testing made at a professional level.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/BackendTesting.png" alt="Backend testing icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Backend Testing</h4>
-
-                <p class="service-item-text">
-                  High-quality Backend Testing of sites at the professional level.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/performance-testing.png" alt="mobile app testing icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Performance Testing</h4>
-
-                <p class="service-item-text">
-                  Performance testing for Web applications.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/E2Etesting.svg" alt="camera icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Integration & E2E Testing</h4>
-
-                <p class="service-item-text">
-                  Integration Testing and E2E Testing for Web Applications at professional level.
-                </p>
-              </div>
-
-            </li>
-
-          </ul>
-
-        </section>
-
-
-        <!--
-          - testimonials
-        -->
-
-        <section class="testimonials">
-
-          <h3 class="h3 testimonials-title">Testimonials</h3>
-
-          <ul class="testimonials-list has-scrollbar">
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/testimonial 1.png" alt="Ayushman Chakravarty" width="60" height="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Ayushman Chakravarty</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    I’ve had the pleasure of knowing Arghajit for several years now, and I’m continually impressed by his professionalism and dedication. As an Automation & QA Engineer, he has a keen eye for detail, ensuring that every aspect of his work meets the highest standards. His commitment to quality is truly commendable.
-                    Arghajit is not only a skilled professional but also a great team player. He collaborates effectively, shares insights, and contributes positively to the success of any project. His work ethic and attention to detail make him an invaluable asset to any team.
-                    
-                    I wholeheartedly recommend Arghajit for any QA or automation role. His passion for excellence and commitment to delivering top-notch results will undoubtedly benefit any organization.
-                    
-                    Best wishes!                  
-                  </p>
-                </div>
-
+              <div class="contact-info">
+                <p class="contact-title">Email</p>
+                <a href="mailto:arghajitsingha47@gmail.com" class="contact-link"
+                  >arghajitsingha47@gmail.com</a
+                >
               </div>
             </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/testimonial 2.jpg" alt="Suman Vishwakarma" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Suman Vishwakarma</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    I had the privilege of working with Arghajit, and I highly recommend him. Arghajit is exceptionally eager to learn new technologies and is a quick learner who explores every aspect of his work thoroughly. His expertise in automation testing is very strong, and he consistently demonstrates a high level of proficiency in this area. Arghajit's dedication and hard work make him a standout professional, and he would be a valuable addition to any team.                
-                  </p>
-                </div>
+            <li class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="phone-portrait-outline"></ion-icon>
+              </div>
+              <div class="contact-info">
+                <p class="contact-title">Phone</p>
+                <a href="tel:+917908984665" class="contact-link"
+                  >+91 7908984665</a
+                >
+                <a href="tel:+918759272997" class="contact-link"
+                  >+91 8759272997</a
+                >
               </div>
             </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/testimonial 3.png" alt="Sagnik Ghosh" width="60" height="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Sagnik Ghosh</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    I've know Arghajit for more than a decade from my school days and I have always admired his dedication and passion for technology.
-
-
-                    Throughout his career, he has excelled in the field of SDET/QA automation testing, demonstrating a strong grasp of Selenium Cypress automation tools.
-                    
-                    
-                    From our interactions over the years, I've consistently seen him exhibit traits of reliability, thoroughness, and a commitment to delivering quality work. Everytime I would build something as my hobby project I'd go to Arghajit seeking his advice.
-                    
-                    Beyond their technical skills, he is also known for their collaborative spirit and ability to effectively communicate complex ideas.
-                    
-                    
-                    I have no doubt that Arghajit would be a valuable asset to any team looking for a skilled and dedicated SDET/QA automation tester. I highly recommend them for opportunities in this field.                  
-                  </p>             
-                </div>
+            <li class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="calendar-outline"></ion-icon>
+              </div>
+              <div class="contact-info">
+                <p class="contact-title">Birthday</p>
+                <time datetime="1999-10-21">November 19, 1999</time>
               </div>
             </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/testimonial 4.png" alt="Akriti Chaudhary" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Akriti Chaudhary</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Arghajit is a skiiled QA Engineer with a passion for Automation. My experience working with him was a 360 degree learning curve, his zeal for solving problems helped the team in complex situations.
-                  </p>
-                </div>
-
+            <li class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="location-outline"></ion-icon>
               </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="https://ca.slack-edge.com/T042A98JQ-U072CNA7KQA-d65728166e03-192" alt="Ojaswi Srivastava" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Ojaswi Srivastava</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-Arghajit consistently demonstrates exceptional attention to detail and a strong commitment to delivering high-quality results. His collaborative approach and problem-solving skills make him a true asset to any team.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="https://ca.slack-edge.com/T042A98JQ-U07F6U3PAMD-02f80f9180fe-512" alt="Mohammed Zuheb" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Mohammed Zuheb</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-Working with Arghajit is an absolute pleasure. He’s one of those rare people who not only excels at what they do but also bring a problem-solving mindset that constantly raises the bar for the whole team.
-                  </p>
-                  <p>
-His work in automation, especially in building and maintaining our Playwright repository has been rock solid. What really stands out is his ability to spot and fix issues we didn’t even know existed. He’s always up for a challenge, super quick to deliver, and has a great instinct for finding bugs during manual testing too.
-                  </p>
-                  <p>
-To sum it up, Arghajit is the kind of teammate you can always count on!
-                  </p>
-                </div>
-
+              <div class="contact-info">
+                <p class="contact-title">Location</p>
+                <address>Bengaluru, India</address>
               </div>
             </li>
           </ul>
+          <div class="separator"></div>
+          <ul class="social-list">
+            <li class="social-item">
+              <a
+                href="https://www.linkedin.com/in/arghajit-singha-1646341bb/"
+                target="_blank"
+                class="social-link"
+              >
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
 
-        </section>
+            <li class="social-item">
+              <a
+                href="https://medium.com/@arghajitsingha47"
+                target="_blank"
+                class="social-link"
+              >
+                <ion-icon name="logo-medium"></ion-icon>
+              </a>
+            </li>
 
+            <li class="social-item">
+              <a
+                href="https://www.npmjs.com/~arghajit"
+                target="_blank"
+                class="social-link"
+              >
+                <ion-icon name="logo-npm"></ion-icon>
+              </a>
+            </li>
 
-        <!--
-          - testimonials modal
-        -->
+            <li class="social-item">
+              <a
+                href="https://youtube.com/@sdetstudio4711"
+                target="_blank"
+                class="social-link"
+              >
+                <ion-icon name="logo-youtube"></ion-icon>
+              </a>
+            </li>
 
-        <div class="modal-container" data-modal-container>
+            <li class="social-item">
+              <a
+                href="https://www.instagram.com/asughan47"
+                target="_blank"
+                class="social-link"
+              >
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
 
-          <div class="overlay" data-overlay></div>
+            <li class="social-item">
+              <a
+                href="https://www.facebook.com/arghajit.singha.7"
+                target="_blank"
+                class="social-link"
+              >
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
 
-          <section class="testimonials-modal">
+      <div class="main-content">
+        <nav class="navbar">
+          <ul class="navbar-list">
+            <li class="navbar-item">
+              <a href="index.html" class="navbar-link">About</a>
+            </li>
+            <li class="navbar-item">
+              <a href="resume.html" class="navbar-link">Resume</a>
+            </li>
+            <li class="navbar-item">
+              <a href="portfolio.html" class="navbar-link">Portfolio</a>
+            </li>
+            <li class="navbar-item">
+              <a href="blogs.html" class="navbar-link">Blogs</a>
+            </li>
+            <li class="navbar-item">
+              <a href="package.html" class="navbar-link">Packages</a>
+            </li>
+            <li class="navbar-item">
+              <a href="videos.html" class="navbar-link">Videos</a>
+            </li>
+            <li class="navbar-item">
+              <a href="contact.html" class="navbar-link">Contact</a>
+            </li>
+          </ul>
+        </nav>
 
-            <button class="modal-close-btn" data-modal-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-            <div class="modal-img-wrapper">
-              <figure class="modal-avatar-box">
-                <img src="./assets/images/avatar-1.png" alt="James Mortesan" width="80" data-modal-img>
-              </figure>
-
-              <img src="./assets/images/icon-quote.svg" alt="quote icon">
-            </div>
-
-            <div class="modal-content">
-
-              <h4 class="h3 modal-title" data-modal-title>James Mortesan</h4>
-
-              <time datetime="2021-06-14">14 June, 2023</time>
-
-              <div data-modal-text>
-                <p>
-                  Suman Vishwakarma is a remarkable SDET II with a strong background in software testing and automation. Over the 3.5 years of her career, she has consistently shown a high level of expertise and professionalism. Suman’s contributions to our testing efforts have been invaluable, particularly her ability to develop efficient test scripts and frameworks. Her work ethic, coupled with her technical acumen, ensures that our software releases are of the highest quality. Suman’s positive attitude and collaborative approach make her a pleasure to work with, and I highly recommend her for any advanced SDET role.</p>
-                </p>
-              </div>
-
-            </div>
-
+        <article class="about active" data-page="about">
+          <header>
+            <h2 class="h2 article-title">About me</h2>
+          </header>
+          <section class="about-text">
+            <p>
+              Motivated and detail-oriented QA Engineer III with 4+ years of
+              experience in software testing and quality assurance at a leading
+              product-based company.
+            </p>
+            <p>
+              Passionate about ensuring the delivery of robust and high-quality
+              software solutions, I have developed a keen understanding of
+              product lifecycles and customer needs.
+            </p>
+            <p>
+              With strong expertise in test automation frameworks, I have
+              consistently contributed to the successful development and release
+              of complex software products, enhancing our product’s reliability
+              and performance for end-users.
+            </p>
           </section>
 
-        </div>
-
-
-        <!--
-          - clients
-        -->
-
-        <section class="clients">
-
-          <h3 class="h3 clients-title">Companies</h3>
-
-          <ul class="clients-list has-scrollbar">
-
-            <li class="clients-item">
-              <a href="https://www.airmech.co.in/">
-                <img src="./assets/images/Airmech.jpeg" alt="Airmech logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="https://www.zemosolabs.com/">
-                <img src="./assets/images/Zemoso.jpeg" alt="Zemoso logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="https://www.ibm.com/in-en">
-                <img src="./assets/images/IBM.png" alt="IBM logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="https://pei.jointhecrew.in/">
-                <img src="./assets/images/PEI.png" alt="PEI logo">
-              </a>
-            </li>
-
-            <!-- <li class="clients-item">
-              <a href="#">
-                <img src="" alt="">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="" alt="">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="" alt="">
-              </a>
-            </li> -->
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #RESUME
-      -->
-
-      <article class="resume" data-page="resume">
-
-        <header>
-          <h2 class="h2 article-title">Resume</h2>
-        </header>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Education</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">St. Mary's Group of Institutions, Hyderabad (JNTUH)</h4>
-
-              <span>2017 — 2021</span>
-
-              <p class="timeline-text">
-                Mechanical Engineering
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Raniganj High School (WBBHSE)</h4>
-
-              <span>2016 — 2017</span>
-
-              <p class="timeline-text">
-                12th Standard
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Raniganj High School (WBBSE)</h4>
-
-              <span>2014 — 2015</span>
-
-              <p class="timeline-text">
-                10th Standard
-              </p>
-
-            </li>
-
-          </ol>
-
-        </section>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Experience</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">QA Automation Engineer III</h4>
-
-              <span>Jul 2024 — Present</span>
-
-              <p class="timeline-text">
-                Company: PEI
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Automation QA Engineer</h4>
-
-              <span>Oct 2023 — Jul 2024</span>
-
-              <p class="timeline-text">
-                Company: IBM India(Contractor)
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">SDET I</h4>
-
-              <span>Mar 2022 — Oct 2023</span>
-
-              <p class="timeline-text">
-                Company: Zemoso Technologies Pvt. Ltd.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Graduate Engineer Trainee</h4>
-
-              <span>Sep 2021 — Mar 2022</span>
-
-              <p class="timeline-text">
-                Company: Airmech Engineers
-              </p>
-
-            </li>
-
-          </ol>
-
-        </section>
-
-        <section class="skill">
-
-          <h3 class="h3 skills-title">My skills</h3>
-
-          <ul class="skills-list content-card">
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Cypress (Javascript + Typescript)</h5>
-                <data value="80">80%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Playwright (Javascript + Typescript)</h5>
-                <data value="75">75%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 75%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Selenium Testing (Java)</h5>
-                <data value="80">80%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Postman API Testing</h5>
-                <data value="90">90%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Cypress API Testing</h5>
-                <data value="90">90%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Playwright API Testing</h5>
-                <data value="80">80%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Performance Testing</h5>
-                <data value="60">60%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 60%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Selenium API Testing (Rest Assured Library)</h5>
-                <data value="70">70%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 70%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">E2E Testing</h5>
-                <data value="80">80%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%;"></div>
-              </div>
-
-            </li>
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #PORTFOLIO
-      -->
-
-      <article class="portfolio" data-page="portfolio">
-
-        <header>
-          <h2 class="h2 article-title">Portfolio</h2>
-        </header>
-
-        <section class="projects">
-
-          <ul class="filter-list">
-
-            <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>selenium testing</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>playwright testing</button>
-            </li>
-            
-            <li class="filter-item">
-              <button data-filter-btn>cypress testing</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>api testing</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>load testing</button>
-            </li>
-
-          </ul>
-
-          <div class="filter-select-box">
-
-            <button class="filter-select" data-select>
-
-              <div class="select-value" data-selecct-value>Select category</div>
-
-              <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
-              </div>
-
-            </button>
-
-            <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item>All</button>
+          <section class="service">
+            <h3 class="h3 service-title">What I'm doing</h3>
+            <ul class="service-list">
+              <li class="service-item">
+                <div class="service-icon-box">
+                  <img
+                    src="./assets/images/frontendTesting.png"
+                    alt="frontend testing icon"
+                    width="40"
+                  />
+                </div>
+                <div class="service-content-box">
+                  <h4 class="h4 service-item-title">Frontend Testing</h4>
+                  <p class="service-item-text">
+                    The most modern and high-quality frontend Testing made at a
+                    professional level.
+                  </p>
+                </div>
               </li>
-
-              <li class="select-item">
-                <button data-select-item>Selenium Testing</button>
+              <li class="service-item">
+                <div class="service-icon-box">
+                  <img
+                    src="./assets/images/BackendTesting.png"
+                    alt="Backend testing icon"
+                    width="40"
+                  />
+                </div>
+                <div class="service-content-box">
+                  <h4 class="h4 service-item-title">Backend Testing</h4>
+                  <p class="service-item-text">
+                    High-quality Backend Testing of sites at the professional
+                    level.
+                  </p>
+                </div>
               </li>
-
-              <li class="select-item">
-                <button data-select-item>Playwright Testing</button>
+              <li class="service-item">
+                <div class="service-icon-box">
+                  <img
+                    src="./assets/images/performance-testing.png"
+                    alt="mobile app testing icon"
+                    width="40"
+                  />
+                </div>
+                <div class="service-content-box">
+                  <h4 class="h4 service-item-title">Performance Testing</h4>
+                  <p class="service-item-text">
+                    Performance testing for Web applications.
+                  </p>
+                </div>
               </li>
-
-              <li class="select-item">
-                <button data-select-item>Cypress Testing</button>
+              <li class="service-item">
+                <div class="service-icon-box">
+                  <img
+                    src="./assets/images/E2Etesting.svg"
+                    alt="camera icon"
+                    width="40"
+                  />
+                </div>
+                <div class="service-content-box">
+                  <h4 class="h4 service-item-title">
+                    Integration & E2E Testing
+                  </h4>
+                  <p class="service-item-text">
+                    Integration Testing and E2E Testing for Web Applications at
+                    professional level.
+                  </p>
+                </div>
               </li>
-
-              <li class="select-item">
-                <button data-select-item>API Testing</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Load Testing</button>
-              </li>
-
             </ul>
+          </section>
 
+          <section class="testimonials">
+            <h3 class="h3 testimonials-title">Testimonials</h3>
+            <ul class="testimonials-list has-scrollbar">
+              <li class="testimonials-item">
+                <div class="content-card" data-testimonials-item>
+                  <figure class="testimonials-avatar-box">
+                    <img
+                      src="./assets/images/testimonial 1.png"
+                      alt="Ayushman Chakravarty"
+                      width="60"
+                      height="60"
+                      data-testimonials-avatar
+                    />
+                  </figure>
+                  <h4
+                    class="h4 testimonials-item-title"
+                    data-testimonials-title
+                  >
+                    Ayushman Chakravarty
+                  </h4>
+                  <div class="testimonials-text" data-testimonials-text>
+                    <p>
+                      I’ve had the pleasure of knowing Arghajit for several
+                      years now, and I’m continually impressed by his
+                      professionalism and dedication. As an Automation & QA
+                      Engineer, he has a keen eye for detail, ensuring that
+                      every aspect of his work meets the highest standards. His
+                      commitment to quality is truly commendable. Arghajit is
+                      not only a skilled professional but also a great team
+                      player. He collaborates effectively, shares insights, and
+                      contributes positively to the success of any project. His
+                      work ethic and attention to detail make him an invaluable
+                      asset to any team. I wholeheartedly recommend Arghajit for
+                      any QA or automation role. His passion for excellence and
+                      commitment to delivering top-notch results will
+                      undoubtedly benefit any organization. Best wishes!
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="testimonials-item">
+                <div class="content-card" data-testimonials-item>
+                  <figure class="testimonials-avatar-box">
+                    <img
+                      src="./assets/images/testimonial 2.jpg"
+                      alt="Suman Vishwakarma"
+                      width="60"
+                      data-testimonials-avatar
+                    />
+                  </figure>
+                  <h4
+                    class="h4 testimonials-item-title"
+                    data-testimonials-title
+                  >
+                    Suman Vishwakarma
+                  </h4>
+                  <div class="testimonials-text" data-testimonials-text>
+                    <p>
+                      I had the privilege of working with Arghajit, and I highly
+                      recommend him. Arghajit is exceptionally eager to learn
+                      new technologies and is a quick learner who explores every
+                      aspect of his work thoroughly. His expertise in automation
+                      testing is very strong, and he consistently demonstrates a
+                      high level of proficiency in this area. Arghajit's
+                      dedication and hard work make him a standout professional,
+                      and he would be a valuable addition to any team.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="testimonials-item">
+                <div class="content-card" data-testimonials-item>
+                  <figure class="testimonials-avatar-box">
+                    <img
+                      src="./assets/images/testimonial 3.png"
+                      alt="Sagnik Ghosh"
+                      width="60"
+                      height="60"
+                      data-testimonials-avatar
+                    />
+                  </figure>
+                  <h4
+                    class="h4 testimonials-item-title"
+                    data-testimonials-title
+                  >
+                    Sagnik Ghosh
+                  </h4>
+                  <div class="testimonials-text" data-testimonials-text>
+                    <p>
+                      I've know Arghajit for more than a decade from my school
+                      days and I have always admired his dedication and passion
+                      for technology. Throughout his career, he has excelled in
+                      the field of SDET/QA automation testing, demonstrating a
+                      strong grasp of Selenium Cypress automation tools. From
+                      our interactions over the years, I've consistently seen
+                      him exhibit traits of reliability, thoroughness, and a
+                      commitment to delivering quality work. Everytime I would
+                      build something as my hobby project I'd go to Arghajit
+                      seeking his advice. Beyond their technical skills, he is
+                      also known for their collaborative spirit and ability to
+                      effectively communicate complex ideas. I have no doubt
+                      that Arghajit would be a valuable asset to any team
+                      looking for a skilled and dedicated SDET/QA automation
+                      tester. I highly recommend them for opportunities in this
+                      field.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="testimonials-item">
+                <div class="content-card" data-testimonials-item>
+                  <figure class="testimonials-avatar-box">
+                    <img
+                      src="./assets/images/testimonial 4.png"
+                      alt="Akriti Chaudhary"
+                      width="60"
+                      data-testimonials-avatar
+                    />
+                  </figure>
+                  <h4
+                    class="h4 testimonials-item-title"
+                    data-testimonials-title
+                  >
+                    Akriti Chaudhary
+                  </h4>
+                  <div class="testimonials-text" data-testimonials-text>
+                    <p>
+                      Arghajit is a skiiled QA Engineer with a passion for
+                      Automation. My experience working with him was a 360
+                      degree learning curve, his zeal for solving problems
+                      helped the team in complex situations.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="testimonials-item">
+                <div class="content-card" data-testimonials-item>
+                  <figure class="testimonials-avatar-box">
+                    <img
+                      src="https://ca.slack-edge.com/T042A98JQ-U072CNA7KQA-d65728166e03-192"
+                      alt="Ojaswi Srivastava"
+                      width="60"
+                      data-testimonials-avatar
+                    />
+                  </figure>
+                  <h4
+                    class="h4 testimonials-item-title"
+                    data-testimonials-title
+                  >
+                    Ojaswi Srivastava
+                  </h4>
+                  <div class="testimonials-text" data-testimonials-text>
+                    <p>
+                      Arghajit consistently demonstrates exceptional attention
+                      to detail and a strong commitment to delivering
+                      high-quality results. His collaborative approach and
+                      problem-solving skills make him a true asset to any team.
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="testimonials-item">
+                <div class="content-card" data-testimonials-item>
+                  <figure class="testimonials-avatar-box">
+                    <img
+                      src="https://ca.slack-edge.com/T042A98JQ-U07F6U3PAMD-02f80f9180fe-512"
+                      alt="Mohammed Zuheb"
+                      width="60"
+                      data-testimonials-avatar
+                    />
+                  </figure>
+                  <h4
+                    class="h4 testimonials-item-title"
+                    data-testimonials-title
+                  >
+                    Mohammed Zuheb
+                  </h4>
+                  <div class="testimonials-text" data-testimonials-text>
+                    <p>
+                      Working with Arghajit is an absolute pleasure. He’s one of
+                      those rare people who not only excels at what they do but
+                      also bring a problem-solving mindset that constantly
+                      raises the bar for the whole team.
+                    </p>
+                    <p>
+                      His work in automation, especially in building and
+                      maintaining our Playwright repository has been rock solid.
+                      What really stands out is his ability to spot and fix
+                      issues we didn’t even know existed. He’s always up for a
+                      challenge, super quick to deliver, and has a great
+                      instinct for finding bugs during manual testing too.
+                    </p>
+                    <p>
+                      To sum it up, Arghajit is the kind of teammate you can
+                      always count on!
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <div class="modal-container" data-modal-container>
+            <div class="overlay" data-overlay></div>
+            <section class="testimonials-modal">
+              <button class="modal-close-btn" data-modal-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+              <div class="modal-img-wrapper">
+                <figure class="modal-avatar-box">
+                  <img
+                    src="./assets/images/avatar-1.png"
+                    alt="James Mortesan"
+                    width="80"
+                    data-modal-img
+                  />
+                </figure>
+                <img src="./assets/images/icon-quote.svg" alt="quote icon" />
+              </div>
+              <div class="modal-content">
+                <h4 class="h3 modal-title" data-modal-title>James Mortesan</h4>
+                <time datetime="2021-06-14">14 June, 2023</time>
+                <div data-modal-text>
+                  <p>
+                    Suman Vishwakarma is a remarkable SDET II with a strong
+                    background in software testing and automation. Over the 3.5
+                    years of her career, she has consistently shown a high level
+                    of expertise and professionalism. Suman’s contributions to
+                    our testing efforts have been invaluable, particularly her
+                    ability to develop efficient test scripts and frameworks.
+                    Her work ethic, coupled with her technical acumen, ensures
+                    that our software releases are of the highest quality.
+                    Suman’s positive attitude and collaborative approach make
+                    her a pleasure to work with, and I highly recommend her for
+                    any advanced SDET role.
+                  </p>
+                </div>
+              </div>
+            </section>
           </div>
 
-          <ul class="project-list">
-
-            <!-- Selenium Project Lists -->
-
-            <li class="project-item  active" data-filter-item data-category="selenium testing">
-              <a href="https://github.com/Arghajit47/Selenium-TutorialsNinja-Project" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Selenium_TutorialsNinja_Project.png" alt="Selenium 1" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="selenium testing">
-              <a href="https://github.com/Arghajit47/Selenium_BookStore_Project" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Selenium_BookStore_Project.png" alt="Selenium 2" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="selenium testing">
-              <a href="https://github.com/Arghajit47/Selenium_browserStack" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Selenium_BrowserStack.png" alt="Selenium 3" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <!-- Cypress Project Lists -->
-
-            <li class="project-item  active" data-filter-item data-category="cypress testing">
-              <a href="https://github.com/Arghajit47/cypress_browserstack_integration" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Cypress_BrowserStack_Integration.png" alt="Cypress 1" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="cypress testing">
-              <a href="https://github.com/Arghajit47/JPet-Store-Cypress-Project" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/JPet_Store_Cypress_Project.png" alt="Cypress 2" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="cypress testing">
-              <a href="https://github.com/Arghajit47/Payever_project_cypress" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Payever_Project_Cypress.png" alt="Cypress 3" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="cypress testing">
-              <a href="https://github.com/Arghajit47/SauceDemo-Website-Testing-Cypress" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/SauceDemo_Website_Testing_Cypress.png" alt="Cypress 4" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="cypress testing">
-              <a href="https://github.com/Arghajit47/Cypress-UI-API-Testing" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Cypress_UI_API_Testing.png" alt="Cypress 5" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="cypress testing">
-              <a href="https://github.com/Arghajit47/Cypress_quickHacks" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Cypress_QuickHacks.png" alt="Cypress 6" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <!-- Playwright Project Lists -->
-
-            <li class="project-item  active" data-filter-item data-category="playwright testing">
-              <a href="https://github.com/Arghajit47/XYZ-Bank-Playwright-project" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/XYZ_Bank_Playwright_Project.png" alt="Playwright 1" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="playwright testing">
-              <a href="https://github.com/Arghajit47/PlaywrightWithJenkins" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/PlaywrightWithJenkins.png" alt="Playwright 2" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="playwright testing">
-              <a href="https://github.com/Arghajit47/Playwright-Javascript" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Playwright_javascript.png" alt="Playwright 3" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="playwright testing">
-              <a href="https://github.com/Arghajit47/Orange-HRM-Project-Playwright" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Orange_HRM_Project_Playwright.png" alt="Playwright 4" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="playwright testing">
-              <a href="https://github.com/Arghajit47/playwright-lighthouse-performance-testing" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/playwright-lighthouse-performance-testing.png" alt="Playwright 5" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="playwright testing">
-              <a href="https://github.com/Arghajit47/playwright-mail-report-and-API-ZOD-validation" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/playwright-emailable-report-ZOD-API-validation.png" alt="Playwright 6" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <!-- API TESTING -->
-
-            <li class="project-item  active" data-filter-item data-category="api testing">
-              <a href="https://github.com/Arghajit47/Karate-API-Testing-Repository" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Karate_API_Testing.png" alt="API 1" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="api testing">
-              <a href="https://github.com/Arghajit47/Cypress_API_testing" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Cypress_API_Testing.png" alt="API 2" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="api testing">
-              <a href="https://github.com/Arghajit47/Postman_API_Testing" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Postman_API_Testing.png" alt="API 3" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="api testing">
-              <a href="https://github.com/Arghajit47/Cypress-API-Testing-Framework" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Cypress_API_Testing_Framework.png" alt="API 4" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="api testing">
-              <a href="https://github.com/Arghajit47/Selenium-API-Testing" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Selenium_API_Testing.png" alt="API 5" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-
-            <!-- LOAD TESTING -->
-
-            <li class="project-item  active" data-filter-item data-category="load testing">
-              <a href="https://github.com/Arghajit47/LoadTesting-k6" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/K6-Load-Testing.png" alt="Load 1" loading="lazy">
-                </figure>
-
-              </a>
-            </li>
-          </ul>
-
-        </section>
-
-      </article>
-
-
-      <!--
-        - #Blogs
-      -->
-
-      <article class="blogs" data-page="blogs">
-
-        <header>
-          <h2 class="h2 article-title">Blogs</h2>
-        </header>
-
-        <section class="blog-posts">
-
-          <ul class="blog-posts-list">
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/playwright-emailable-report-e034dfa6a609" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 1.png" alt="Blog 1" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Automating Playwright Reports: Generate, Zip, and Email Test Results Using Node.js</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">Oct 12, 2024</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/playwright-with-zod-effortless-schema-validation-for-powerful-api-testing-766320924cd2" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 2.png" alt="Blog 2" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Playwright with Zod: Effortless Schema Validation for Powerful API Testing</p>
-                  </div>
-
-                  <div class="blog-meta">
-                    <time datetime="2024-10-13">Oct 13, 2024</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/integrating-playwright-with-lighthouse-for-e2e-performance-testing-by-arghajit-singha-5c311e764094" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 3.png" alt="Blog 1" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Integrating Playwright with Lighthouse for Automated Performance Testing || By Arghajit Singha</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">Nov 17, 2024</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/api-gateway-af3d30845b31" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 4.gif" alt="Blog 2" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Brief About API Gateway 🚀 || By Arghajit Singha</p>
-                  </div>
-
-                  <div class="blog-meta">
-                    <time datetime="2024-10-13">Nov 16, 2024</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/how-to-automate-and-deploy-test-reports-to-netlify-by-arghajit-singha-c44d3940cc0b" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 5.png" alt="Blog 2" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">How to Automate and Deploy Test Reports to Netlify || By Arghajit Singha</p>
-                  </div>
-
-                  <div class="blog-meta">
-                    <time datetime="2024-10-13">Nov 17, 2024</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/visual-testing-with-playwright-by-arghajit-singha-14424842a9ea" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 6.png" alt="Blog 6" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Visual Testing with Playwright || By Arghajit Singha</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">Mar 17, 2025</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/playwright-lighthouse-puppeteer-automated-performance-testing-c11de0951ed0" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 7.png" alt="Blog 7" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Playwright + Lighthouse Puppeteer Automated Performance Testing || By Arghajit Singha</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">Feb 24, 2025</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/automating-database-testing-with-playwright-and-postgresql-by-arghajit-singha-ce17432cbf02" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 8.png" alt="Blog 8" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Automating Database Testing with Playwright and PostgreSQL || By Arghajit Singha</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">Dec 27, 2024</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/playwright-pulse-report-streamline-your-test-reporting-d51c7d0aca51" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 9.png" alt="Blog 9" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Playwright Pulse Report: Streamline Your Test Reporting</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">May 8, 2025</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/introducing-ai-analyzer-integrated-into-playwright-pulse-report-by-arghajit-singha-f4c4ca839ce0" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 10.png" alt="Blog 10" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Introducing AI Analyzer: Integrated into Playwright-pulse-report || By Arghajit Singha</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">May 16, 2025</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/playwright-pulse-report-v0-2-1-trends-smarter-ui-stakeholder-ready-dashboards-ecebe723d71b" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 11.png" alt="Blog 11" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Playwright Pulse Report v0.2.1: Trends, Smarter UI & Stakeholder-Ready Dashboards</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">Jun 1, 2025</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/introducing-playwright-pulse-report-v0-2-2-577749da01bb" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 12.png" alt="Blog 12" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Introducing Playwright Pulse Report v0.2.2: Enhanced Test Analytics & Real-Time Dashboard || By Arghajit Singha</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">Jun 18, 2025</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/introducing-playwright-pulse-report-v0-2-4-smarter-sequential-test-handling-arghajit-singha-a10b707af654" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 13.png" alt="Blog 13" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Introducing Playwright Pulse Report v0.2.4 — Smarter Sequential Test Handling || Arghajit Singha</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">Jul 5, 2025</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/supercharging-your-test-analysis-introducing-the-test-distribution-by-worker-chart-in-playwright-51a6b3dda3cf" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 14.png" alt="Blog 14" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Supercharging Your Test Analysis: Introducing the Test Distribution by Worker Chart in Playwright Pulse v0.2.5</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">Jul 20, 2025</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/introducing-version-0-2-6-playwright-pulse-report-smarter-debugging-enhanced-reporting-b2da76662643" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 15.png" alt="Blog 15" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Introducing Version 0.2.6 Playwright Pulse Report : Smarter Debugging & Enhanced Reporting</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">Aug 14, 2025</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@arghajitsingha47/meet-the-future-of-test-analysis-pulse-dashboards-newest-features-are-here-d4ee3d1f5a1c" target="_blank">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/Medium 16.png" alt="Blog 16" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Meet the Future of Test Analysis: Pulse Dashboard’s Newest Features Are Here!</p>
-                  </div>
-                  <div class="blog-meta">
-                    <time datetime="2024-10-12">Aug 20, 2025</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Medium</h3>
-
-                  <p class="blog-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-      <!--
-        - #Videos
-      -->
-
-      <article class="videos" data-page="videos">
-
-        <header>
-          <h2 class="h2 article-title">Videos</h2>
-        </header>
-
-        <section class="video-posts">
-
-          <ul class="video-posts-list">
-
-            <li class="video-post-item">
-              <a href="https://youtu.be/qIOwIgO663E" target="_blank">
-
-                <figure class="video-banner-box">
-                  <img src="./assets/images/qIOwIgO663E-SD.jpg" alt="Video 1" loading="lazy">
-                </figure>
-
-                <div class="video-content">
-
-                  <div class="video-meta">
-                    <p class="video-category">Best Websites to start Automation and Manual testing for SDET</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2023-09-23">September, 2023</time>
-                  </div>
-
-                  <h3 class="h3 video-item-title">Automation Testing Websites</h3>
-
-                  <p class="video-text">
-                   
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="video-post-item">
-              <a href="https://youtu.be/VgIxgb272ps" target="_blank">
-
-                <figure class="video-banner-box">
-                  <img src="./assets/images/VgIxgb272ps-HQ.jpg" alt="Video 2" loading="lazy">
-                </figure>
-
-                <div class="video-content">
-
-                  <div class="video-meta">
-                    <p class="video-category">Into A DevOps life || ft. Ayush Srivastava || The QA Podcast</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2023-09-26">September, 2023</time>
-                  </div>
-
-                  <h3 class="h3 video-item-title">The QA Podcast</h3>
-
-                  <p class="video-text">
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-
-            <li class="video-post-item">
-              <a href="https://youtu.be/ALqflCCZxf0" target="_blank">
-
-                <figure class="video-banner-box">
-                  <img src="./assets/images/ALqflCCZxf0-HD.jpg" alt="Video 3" loading="lazy">
-                </figure>
-
-                <div class="video-content">
-
-                  <div class="video-meta">
-                    <p class="video-category">QA Insihts ft. Akriti Chaudhary: Chill Talk on Life in Quality Assurance || The QA Podcast</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2023-09-29">September, 2023</time>
-                  </div>
-
-                  <h3 class="h3 video-item-title">The QA Podcast</h3>
-
-                  <p class="video-text">
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #CONTACT
-      -->
-
-      <article class="contact" data-page="contact">
-
-        <header>
-          <h2 class="h2 article-title">Contact</h2>
-        </header>
-
-        <section class="mapbox" data-mapbox>
-          <figure>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d971.9519855539038!2d77.6076598991974!3d12.98413260000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae17004e48072f%3A0xc5640bb528086b6!2sVimarshAgencies!5e0!3m2!1sen!2sin!4v1721075184027!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>          </figure>
-        </section>
-
-        <section class="contact-form">
-
-          <h3 class="h3 form-title">Contact Form</h3>
-
-          <form action="#" class="form" data-form>
-
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
-            </div>
-
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-
-          </form>
-
-        </section>
-
-      </article>
-
-    </div>
-
-  </main>
-
-
-
-
-
-
-  <!--
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
-
-  <!--
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-</body>
-
+          <section class="clients">
+            <h3 class="h3 clients-title">Companies</h3>
+            <ul class="clients-list has-scrollbar">
+              <li class="clients-item">
+                <a href="https://www.airmech.co.in/">
+                  <img src="./assets/images/Airmech.jpeg" alt="Airmech logo" />
+                </a>
+              </li>
+              <li class="clients-item">
+                <a href="https://www.zemosolabs.com/">
+                  <img src="./assets/images/Zemoso.jpeg" alt="Zemoso logo" />
+                </a>
+              </li>
+              <li class="clients-item">
+                <a href="https://www.ibm.com/in-en">
+                  <img src="./assets/images/IBM.png" alt="IBM logo" />
+                </a>
+              </li>
+              <li class="clients-item">
+                <a href="https://pei.jointhecrew.in/">
+                  <img src="./assets/images/PEI.png" alt="PEI logo" />
+                </a>
+              </li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <script src="./assets/js/script.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>
