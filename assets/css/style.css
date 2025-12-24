@@ -1868,16 +1868,11 @@ textarea.form-input::-webkit-resizer {
   }
 
   .filter-select-box {
-    display: none;
+    display: block;
   }
 
   .filter-list {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 25px;
-    padding-left: 5px;
-    margin-bottom: 30px;
+    display: none;
   }
 
   .filter-item button {

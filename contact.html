@@ -161,7 +161,7 @@
               <a href="resume.html" class="navbar-link">Resume</a>
             </li>
             <li class="navbar-item">
-              <a href="portfolio.html" class="navbar-link">Portfolio</a>
+              <a href="projects.html" class="navbar-link">Projects</a>
             </li>
             <li class="navbar-item">
               <a href="blogs.html" class="navbar-link">Blogs</a>
@@ -186,7 +186,7 @@
           <section class="mapbox" data-mapbox>
             <figure>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d971.9519855539038!2d77.6076598991974!3d12.98413260000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae17004e48072f%3A0xc5640bb528086b6!2sVimarshAgencies!5e0!3m2!1sen!2sin!4v1721075184027!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.896693952073!2d77.6228585753424!3d12.978458814727354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16998c572ea9%3A0xa55a95cf8859a4fa!2sRama%20Villas%2C%20Halasuru%2C%20Dodakattappa%2C%20Bengaluru%2C%20Karnataka%20560008!5e0!3m2!1sen!2sin!4v1766609013440!5m2!1sen!2sin"
                 width="600"
                 height="450"
                 style="border: 0"
@@ -244,5 +244,46 @@
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+
+    <script type="text/javascript">
+      (function(){
+          // PASTE YOUR PUBLIC KEY HERE (Keep the quotes!)
+          emailjs.init("HJ7pnGYsbuquXbY7l"); 
+      })();
+    </script>
+
+    <script>
+      const contactForm = document.querySelector('[data-form]');
+      const formBtn = document.querySelector('[data-form-btn]');
+
+      contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        
+        // Change button text to show it's working
+        const btnSpan = formBtn.querySelector('span');
+        const originalText = btnSpan.innerText;
+        btnSpan.innerText = 'Sending...';
+
+        // PASTE YOUR OTHER KEYS HERE (Keep the quotes!)
+        const serviceID = 'service_vesy84e';
+        const templateID = 'template_aes66rz';
+
+        emailjs.sendForm(serviceID, templateID, this)
+          .then(() => {
+            btnSpan.innerText = 'Message Sent!';
+            contactForm.reset();
+            setTimeout(() => btnSpan.innerText = originalText, 3000);
+          })
+          .catch((err) => {
+            btnSpan.innerText = 'Failed!';
+            alert('Error sending email: ' + JSON.stringify(err));
+            console.log(err);
+          });
+      });
+    </script>
   </body>
 </html>

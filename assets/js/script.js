@@ -60,7 +60,7 @@ if (modalContainer && testimonialsItem.length > 0) {
   overlay.addEventListener("click", testimonialsModalFunc);
 }
 
-// --- Portfolio Filter (Only runs if filter elements are on the page, e.g., portfolio.html) ---
+// --- Projects Filter (Only runs if filter elements are on the page, e.g., projects.html) ---
 const select = document.querySelector("[data-select]");
 
 if (select) {
