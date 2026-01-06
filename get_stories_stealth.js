@@ -14,9 +14,16 @@ const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
 (async () => {
   console.log("🥷 Launching Stealth Browser...");
   const browser = await puppeteer.launch({
-    headless: true, // Must be false to solve Captcha
+    // If running in CI (GitHub Actions), use headless: "new". Otherwise allow false.
+    headless: process.env.CI ? "new" : false,
     defaultViewport: null,
-    args: ["--start-maximized", "--disable-notifications"],
+    args: [
+      "--start-maximized",
+      "--disable-notifications",
+      // Crucial for running Puppeteer in Docker/CI environments:
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+    ],
   });
 
   const page = await browser.newPage();
