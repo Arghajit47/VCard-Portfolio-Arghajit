@@ -1,0 +1,17 @@
+{
+  "name": "vcard-portfolio-arghajit",
+  "version": "1.0.0",
+  "description": "## Description VCard-Portfolio-Arghajit is a personal portfolio website that showcases your projects, skills, and contact information in a visually appealing manner.",
+  "main": "get_medium_stories.js",
+  "scripts": {
+    "get-stories": "node get_stories_stealth.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^24.34.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}
