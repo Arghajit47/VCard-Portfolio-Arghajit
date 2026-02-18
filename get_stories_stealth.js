@@ -24,7 +24,8 @@ const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
 function normaliseDate(raw) {
   if (!raw) return "";
 
-  const text = raw.trim();
+  // Strip leading action words Medium sometimes prepends, e.g. "Published 5d ago"
+  const text = raw.trim().replace(/^(Published|Updated|Posted)\s+/i, "");
   const now  = new Date();
 
   const pad = (n) => String(n).padStart(2, "0");
@@ -134,18 +135,25 @@ function normaliseDate(raw) {
           }
         }
 
-        // Fallback: scan all <span> elements for something that looks like a date
+        // Fallback: scan all <span>, <p>, and <div> elements for something that looks like a date.
+        // We read the first text node directly (not innerText) to avoid picking up child element text,
+        // e.g. <div>5d ago<div>...claps...</div></div> → first text node is "5d ago".
         if (!rawDate.trim()) {
-          const spans = article.querySelectorAll("span");
-          for (const span of spans) {
-            const t = (span.innerText || "").trim();
-            // Matches: "Oct 12, 2024" | "Oct 12" | "3d ago" | "5mins ago"
+          const candidates = article.querySelectorAll("span, p, div");
+          for (const el of candidates) {
+            // Get only the direct text content (first text node), not descendant text
+            const firstTextNode = Array.from(el.childNodes).find(n => n.nodeType === 3);
+            const t = firstTextNode ? firstTextNode.textContent.trim() : "";
+            if (!t) continue;
+            // Strip optional leading action word before testing
+            const core = t.replace(/^(Published|Updated|Posted)\s+/i, "");
+            // Matches: "Oct 12, 2024" | "Oct 12" | "3d ago" | "5mins ago" | "just now"
             if (
-              /^[A-Za-z]{3}\s+\d{1,2}(,\s*\d{4})?$/.test(t) ||
-              /^\d+\s*(d|min|mins|h)\s+ago$/i.test(t) ||
-              /^just now$/i.test(t)
+              /^[A-Za-z]{3}\s+\d{1,2}(,\s*\d{4})?$/.test(core) ||
+              /^\d+\s*(d|min|mins|h)\s+ago$/i.test(core) ||
+              /^just now$/i.test(core)
             ) {
-              rawDate = t;
+              rawDate = t; // pass the full string (with prefix) to normaliseDate
               break;
             }
           }

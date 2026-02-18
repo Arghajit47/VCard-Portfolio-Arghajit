@@ -409,11 +409,17 @@
             p.title.toLowerCase().includes(query)
           );
 
-          // Sort by real date when available, fall back to array index
+          // Sort by real date; posts without a date always go to the end
           filtered.sort((a, b) => {
-            const ta = a._ts !== null ? a._ts : -a._idx * 1e12;
-            const tb = b._ts !== null ? b._ts : -b._idx * 1e12;
-            return order === "newest" ? tb - ta : ta - tb;
+            const aHasDate = a._ts !== null;
+            const bHasDate = b._ts !== null;
+            // Both dateless → preserve original array order
+            if (!aHasDate && !bHasDate) return a._idx - b._idx;
+            // One dateless → push it to the end
+            if (!aHasDate) return 1;
+            if (!bHasDate) return -1;
+            // Both have dates → sort by timestamp
+            return order === "newest" ? b._ts - a._ts : a._ts - b._ts;
           });
 
           // Update count badge

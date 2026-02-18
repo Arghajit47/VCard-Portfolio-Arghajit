@@ -12,7 +12,7 @@ const mediumStoriesData = [
     "date": "12-10-2024"
   },
   {
-    "title": "Introducing Pulse 1.2.7",
+    "title": "Introducing Pulse Dashboard 1.2.7",
     "url": "https://medium.com/@arghajitsingha47/introducing-pulse-1-2-7-bae33f628ff3",
     "image": "https://miro.medium.com/v2/resize:fill:160:106/1*6YyvVjs3jdYvTDpscWGR5g.png",
     "date": "13-02-2026"
