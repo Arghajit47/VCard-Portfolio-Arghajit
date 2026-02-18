@@ -43,14 +43,23 @@ jobs:
         env:
           CI: true # Good practice to let scripts know they are running in CI
 
+      # Copy all site files + the generated blog_data.js into a _site folder.
+      # upload-pages-artifact only includes git-tracked files when given ".",
+      # so we must explicitly build an output directory that includes the
+      # dynamically generated blog_data.js.
+      - name: Prepare site output
+        run: |
+          mkdir -p _site
+          # Copy everything except node_modules, .git, and the _site dir itself
+          rsync -av --exclude='node_modules' --exclude='.git' --exclude='_site' . _site/
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the entire repository ('.' root) where index.html and blog_data.js reside
-          path: "."
+          path: "_site"
 
       - name: Deploy to GitHub Pages
         id: deployment
