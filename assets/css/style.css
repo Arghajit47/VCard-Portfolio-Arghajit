@@ -510,49 +510,19 @@ main {
 }
 
 /*-----------------------------------*\
- * #NAVBAR GLASSMORPHISM STYLE
+ * #NAVBAR ACTIVE STYLE
 \*-----------------------------------*/
-/* 
- * First, add a smooth transition to all navbar links for hover effects 
- * and for when the active class is applied.
- */
 .navbar-link {
   transition: all 0.25s ease;
 }
-/* 
- * This is the main style for the active navigation link.
- * It creates the glassmorphism effect.
- */
+
 .navbar-link.active {
-  /** 1. The Glass Background **/
-  /* A semi-transparent white background is the base of the effect. */
-  background: rgba(255, 255, 255, 0.1);
-
-  /** 2. The Frosted Glass Effect **/
-  /* This blurs whatever is behind the element. This is the key to glassmorphism. */
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  backdrop-filter: blur(10px);
-
-  /** 3. The Subtle Border **/
-  /* A light border helps the "glass" panel stand out from the background. */
-  border: 1px solid rgba(255, 255, 255, 0.15);
-
-  /** 4. Subtle Shadow for Depth **/
-  /* Adds a soft shadow to make it feel like it's floating above the page. */
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.293);
-
-  /** 5. Text Color **/
-  /* We use your existing variable for the active color to ensure the text is bright. */
   color: var(--vegas-gold);
+  border-bottom: 2px solid var(--vegas-gold);
 }
 
-/* 
- * Optional: A slightly different hover effect for non-active links 
- * to make the UI feel more responsive.
- */
 .navbar-link:not(.active):hover {
-  background: rgba(255, 255, 255, 0.05); /* A very subtle background on hover */
-  color: var(--vegas-gold); /* Brighten the text color on hover */
+  color: var(--vegas-gold);
 }
 
 /*-----------------------------------*\
