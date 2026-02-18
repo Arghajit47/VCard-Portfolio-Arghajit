@@ -2,7 +2,7 @@
 # VCard-Portfolio-Arghajit
 
 ## Description
-VCard-Portfolio-Arghajit is a personal portfolio website that showcases your projects, skills, and contact information in a visually appealing manner.
+VCard-Portfolio-Arghajit is a personal portfolio website that showcases my projects, skills, and contact information in a visually appealing manner.
 
 ## Features
 - Simple html website with Responsive design
