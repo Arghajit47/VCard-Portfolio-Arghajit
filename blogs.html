@@ -338,7 +338,7 @@
       }
     </style>
 
-    <script src="blog_data.js"></script>
+    <script src="blog_data.js" onerror="window._blogDataLoadFailed=true"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -349,8 +349,13 @@
         const noResults = document.getElementById("blog-no-results");
 
         // Guard: data not loaded
-        if (typeof mediumStoriesData === "undefined" || !mediumStoriesData || mediumStoriesData.length === 0) {
-          container.innerHTML = "<p>No blog posts found. (Make sure blog_data.js is in the same folder)</p>";
+        if (window._blogDataLoadFailed) {
+          container.innerHTML = "<p>Could not load blog_data.js. Please run <code>npm run get-stories</code> locally, or check that the file exists.</p>";
+          countBadge.textContent = "0 posts";
+          return;
+        }
+        if (typeof mediumStoriesData === "undefined" || !Array.isArray(mediumStoriesData) || mediumStoriesData.length === 0) {
+          container.innerHTML = "<p>No blog posts found. Run <code>npm run get-stories</code> to generate blog_data.js.</p>";
           countBadge.textContent = "0 posts";
           return;
         }
