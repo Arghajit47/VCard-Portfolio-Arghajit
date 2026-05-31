@@ -37,11 +37,12 @@ jobs:
       - name: Install dependencies
         run: npm ci # 'ci' is faster and cleaner than 'install' for CI environments
 
-      # This runs your Puppeteer script to generate 'blog_data.js'
+      # This runs your Medium API script to generate 'blog_data.js'
       - name: Generate Stories Data
         run: npm run get-stories
         env:
           CI: true # Good practice to let scripts know they are running in CI
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
 
       # Copy all site files + the generated blog_data.js into a _site folder.
       # upload-pages-artifact only includes git-tracked files when given ".",

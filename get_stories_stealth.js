@@ -1,255 +1,86 @@
-// Import the "extra" version of puppeteer
-const puppeteer = require("puppeteer-extra");
-const StealthPlugin = require("puppeteer-extra-plugin-stealth");
-const fs = require("fs");
+const axios = require('axios');
+const fs = require('fs');
 
-// Apply the stealth plugin to hide automation flags
-puppeteer.use(StealthPlugin());
-
-const USERNAME = "@arghajitsingha47";
-
-// Helper to pause execution
-const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
+const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY || 'YOUR_RAPIDAPI_KEY_HERE';
+const USERNAME = 'arghajitsingha47'; // Without the '@' for this specific API
 
 /**
- * Normalise a raw Medium date string into "DD-MM-YYYY".
- *
- * Handled formats:
- *  1. "Oct 12, 2024"  → full date  → DD-MM-YYYY
- *  2. "Oct 12"        → no year    → DD-MM-YYYY  (current year)
- *  3. "Xd ago"        → X days ago → DD-MM-YYYY
- *  4. "Xmins ago" / "Xmin ago" / "Xh ago" / "just now"
- *                     → today      → DD-MM-YYYY
+ * Formats an ISO / datetime string into the DD-MM-YYYY format expected by the frontend.
+ * E.g., "2024-10-13 14:02:00" -> "13-10-2024"
  */
-function normaliseDate(raw) {
-  if (!raw) return "";
-
-  // Strip leading action words Medium sometimes prepends, e.g. "Published 5d ago"
-  const text = raw.trim().replace(/^(Published|Updated|Posted)\s+/i, "");
-  const now  = new Date();
-
-  const pad = (n) => String(n).padStart(2, "0");
-  const fmt = (d) =>
-    `${pad(d.getDate())}-${pad(d.getMonth() + 1)}-${d.getFullYear()}`;
-
-  // Rule 3 – "Xd ago"  (e.g. "3d ago")
-  const daysAgoMatch = text.match(/^(\d+)\s*d\s+ago$/i);
-  if (daysAgoMatch) {
-    const d = new Date(now);
-    d.setDate(d.getDate() - parseInt(daysAgoMatch[1], 10));
-    return fmt(d);
-  }
-
-  // Rule 4 – "Xmins ago" / "Xmin ago" / "Xh ago" / "just now" → today
-  if (/(\d+\s*(min|mins|minute|minutes|h|hr|hrs|hour|hours)\s+ago|just now)/i.test(text)) {
-    return fmt(now);
-  }
-
-  // Rule 1 – "Oct 12, 2024"  (month day, year)
-  const fullDateMatch = text.match(/^([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})$/);
-  if (fullDateMatch) {
-    const parsed = new Date(`${fullDateMatch[1]} ${fullDateMatch[2]}, ${fullDateMatch[3]}`);
-    if (!isNaN(parsed)) return fmt(parsed);
-  }
-
-  // Rule 2 – "Oct 12"  (month day, no year → current year)
-  const shortDateMatch = text.match(/^([A-Za-z]+)\s+(\d{1,2})$/);
-  if (shortDateMatch) {
-    const parsed = new Date(`${shortDateMatch[1]} ${shortDateMatch[2]}, ${now.getFullYear()}`);
-    if (!isNaN(parsed)) return fmt(parsed);
-  }
-
-  // Fallback – return the raw string unchanged
-  return text;
+function formatDate(dateStr) {
+    if (!dateStr) return "";
+    try {
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return dateStr;
+        const pad = (n) => String(n).padStart(2, "0");
+        return `${pad(d.getDate())}-${pad(d.getMonth() + 1)}-${d.getFullYear()}`;
+    } catch (e) {
+        return dateStr;
+    }
 }
 
-(async () => {
-  console.log("🥷 Launching Stealth Browser...");
-  const browser = await puppeteer.launch({
-    // If running in CI (GitHub Actions), use headless: "new". Otherwise allow false.
-    headless: process.env.CI ? "new" : false,
-    defaultViewport: null,
-    args: [
-      "--start-maximized",
-      "--disable-notifications",
-      // Crucial for running Puppeteer in Docker/CI environments:
-      "--no-sandbox",
-      "--disable-setuid-sandbox",
-    ],
-  });
-
-  const page = await browser.newPage();
-
-  console.log(`navigating to https://medium.com/${USERNAME}`);
-  await page.goto(`https://medium.com/${USERNAME}`, {
-    waitUntil: "networkidle2",
-  });
-
-  // --- HUMAN HANDOVER LOGIC ---
-  try {
-    console.log("👀 Checking for stories...");
-    await page.waitForSelector('a[data-action="show-post-card"], article, div[role="article"]', { timeout: 5000 });
-  } catch (e) {
-    console.log("⚠️  BOT DETECTION TRIGGERED or Page Loading Slow ⚠️");
-    console.log("👉 Please switch to the browser window.");
-    console.log("👉 SOLVE THE CAPTCHA / VERIFY YOU ARE HUMAN.");
-    console.log("⏳ Script is waiting for your profile to load...");
-    await page.waitForSelector('a[data-action="show-post-card"], article, div[role="article"]', { timeout: 0 });
-    console.log("✅ Verification passed! Resuming scraper...");
-  }
-
-  const uniqueStories = new Map();
-  console.log("📜 Starting Scroll & Scrape process...");
-
-  let previousHeight = 0;
-  let noChangeCount  = 0;
-
-  while (true) {
-    const newStories = await page.evaluate(() => {
-      const data     = [];
-      // Updated selectors for current Medium structure
-      const articles = document.querySelectorAll(
-        'a[data-action="show-post-card"], article, div[role="article"], div.js-postPreview'
-      );
-
-      articles.forEach((article) => {
-        // Find the actual container - sometimes the link itself is the container
-        const container = article.tagName === 'A' ? article : article;
-        
-        // Title selectors - try multiple approaches
-        let titleEl = container.querySelector("h2, h3, [data-testid='title']");
-        if (!titleEl) {
-          const headings = container.querySelectorAll('h1, h2, h3, h4');
-          if (headings.length > 0) titleEl = headings[0];
+async function fetchAllMediumPosts() {
+    try {
+        if (!RAPIDAPI_KEY || RAPIDAPI_KEY === 'YOUR_RAPIDAPI_KEY_HERE') {
+            console.warn("⚠️ Warning: RAPIDAPI_KEY is not set. The API request might fail unless a valid key is provided.");
         }
 
-        // Link selectors - prioritize direct href on the container or find anchor
-        let linkEl = container.tagName === 'A' ? container : container.querySelector('a[href*="/@"]');
-        if (!linkEl) {
-          const anchors = container.querySelectorAll('a');
-          for (const a of anchors) {
-            if (a.href && a.href.includes('/')) {
-              linkEl = a;
-              break;
+        // Step 1: Get the User ID from the username
+        console.log(`🔍 Fetching User ID for @${USERNAME}...`);
+        const userResponse = await axios.get(`https://medium2.p.rapidapi.com/user/id_for/${USERNAME}`, {
+            headers: {
+                'x-rapidapi-host': 'medium2.p.rapidapi.com',
+                'x-rapidapi-key': RAPIDAPI_KEY
             }
-          }
-        }
+        });
 
-        // Image selectors
-        const imgEl = container.querySelector("img[alt], img[src*='miro'], img[src*='images']");
+        const userId = userResponse.data.id;
+        console.log(`🆔 Found User ID: ${userId}`);
 
-        // Date selectors - updated for current Medium markup
-        const dateSelectors = [
-          "time",                          // semantic <time> element
-          '[data-testid="storyPublishDate"]',
-          'span[aria-label*="ago"]',        // relative time spans
-          'span[data-tooltip]',             // tooltips with dates
-          'span.vy, span.vw',               // Medium's common date span classes
-        ];
-
-        let rawDate = "";
-        for (const sel of dateSelectors) {
-          const el = container.querySelector(sel);
-          if (el) {
-            // Prefer the datetime attribute on <time>, fall back to innerText
-            rawDate = el.getAttribute("datetime") || el.getAttribute("title") || el.innerText || "";
-            if (rawDate.trim()) break;
-          }
-        }
-
-        // Fallback: scan all text nodes for date-like patterns
-        if (!rawDate.trim()) {
-          const allText = container.innerText || "";
-          // Look for date patterns in the text
-          const datePatterns = [
-            /\b[A-Za-z]{3}\s+\d{1,2},\s*\d{4}\b/,  // "Oct 12, 2024"
-            /\b[A-Za-z]{3}\s+\d{1,2}\b/,            // "Oct 12"
-            /\b\d+\s*d\s+ago\b/i,                   // "3d ago"
-            /\b\d+\s*min(?:ute)?s?\s+ago\b/i,       // "5mins ago"
-            /\b\d+\s*h(?:our)?\s+ago\b/i,           // "2h ago"
-            /\bjust now\b/i,                        // "just now"
-          ];
-          
-          for (const pattern of datePatterns) {
-            const match = allText.match(pattern);
-            if (match) {
-              rawDate = match[0];
-              break;
+        // Step 2: Get all article IDs published by this user
+        console.log(`📚 Fetching article list...`);
+        const articlesResponse = await axios.get(`https://medium2.p.rapidapi.com/user/${userId}/articles`, {
+            headers: {
+                'x-rapidapi-host': 'medium2.p.rapidapi.com',
+                'x-rapidapi-key': RAPIDAPI_KEY
             }
-          }
-        }
+        });
 
-        if (titleEl && linkEl) {
-          let link = linkEl.href ? linkEl.href.split("?")[0] : "";
-          let img  = imgEl ? imgEl.src : "No Image";
+        const articleIds = articlesResponse.data.associated_articles;
+        console.log(`📋 Found ${articleIds.length} total articles. Fetching full content for each...`);
 
-          if (link && titleEl.innerText) {
-            data.push({
-              title:   titleEl.innerText.trim(),
-              url:     link,
-              image:   img,
-              rawDate: rawDate.trim(),
+        // Step 3: Loop through and fetch details for each individual article
+        const fullArticles = [];
+        for (const id of articleIds) {
+            const articleDetails = await axios.get(`https://medium2.p.rapidapi.com/article/${id}`, {
+                headers: {
+                    'x-rapidapi-host': 'medium2.p.rapidapi.com',
+                    'x-rapidapi-key': RAPIDAPI_KEY
+                }
             });
-          }
+            
+            const data = articleDetails.data;
+            fullArticles.push({
+                title: data.title,
+                url: data.url,
+                image: data.image_url || 'No Image',
+                date: formatDate(data.published_at)
+            });
+            console.log(`✅ Fetched: "${data.title}"`);
         }
-      });
-      return data;
-    });
 
-    let addedCount = 0;
-    newStories.forEach((story) => {
-      if (!uniqueStories.has(story.url)) {
-        // Normalise the date on the Node.js side (has access to Date)
-        story.date = normaliseDate(story.rawDate);
-        delete story.rawDate; // keep the output clean
-        uniqueStories.set(story.url, story);
-        addedCount++;
-      }
-    });
+        console.log(`🎉 Successfully fetched ${fullArticles.length} posts!`);
 
-    if (addedCount > 0)
-      console.log(
-        `   Found ${addedCount} new stories (Total: ${uniqueStories.size})`
-      );
+        // Save data to blog_data.js in the format expected by the frontend (mediumStoriesData)
+        const jsContent = `const mediumStoriesData = ${JSON.stringify(fullArticles, null, 2)};`;
+        fs.writeFileSync("blog_data.js", jsContent);
 
-    previousHeight = await page.evaluate("document.body.scrollHeight");
-    await page.evaluate("window.scrollTo(0, document.body.scrollHeight)");
-    await delay(3000);
+        console.log(`📂 Saved to blog_data.js (Ready for direct HTML import)`);
 
-    const newHeight = await page.evaluate("document.body.scrollHeight");
-    if (newHeight === previousHeight) {
-      noChangeCount++;
-      console.log("   ...Waiting for more content...");
-      if (noChangeCount >= 3) {
-        console.log("✅ Reached bottom of page.");
-        break;
-      }
-    } else {
-      noChangeCount = 0;
+    } catch (error) {
+        console.error("❌ Error scraping Medium via API:", error.response ? error.response.data : error.message);
     }
-  }
+}
 
-  // --- SAVE ---
-  const results = Array.from(uniqueStories.values());
-  if (results.length > 0) {
-    const jsContent = `const mediumStoriesData = ${JSON.stringify(
-      results,
-      null,
-      2
-    )};`;
-
-    fs.writeFileSync("blog_data.js", jsContent);
-
-    console.log(`\n🎉 SUCCESS: Extracted ${results.length} unique stories.`);
-    console.log(`📂 Saved to blog_data.js (Ready for direct HTML import)`);
-
-    // Quick summary of date coverage
-    const withDate    = results.filter((r) => r.date).length;
-    const withoutDate = results.length - withDate;
-    console.log(`📅 Date coverage: ${withDate} with date, ${withoutDate} without.`);
-  } else {
-    console.log("❌ No stories found.");
-  }
-
-  await browser.close();
-})();
+fetchAllMediumPosts();
