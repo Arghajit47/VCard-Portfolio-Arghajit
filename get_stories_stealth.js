@@ -88,13 +88,13 @@ function normaliseDate(raw) {
   // --- HUMAN HANDOVER LOGIC ---
   try {
     console.log("👀 Checking for stories...");
-    await page.waitForSelector('article, div[role="link"]', { timeout: 5000 });
+    await page.waitForSelector('a[data-action="show-post-card"], article, div[role="article"]', { timeout: 5000 });
   } catch (e) {
     console.log("⚠️  BOT DETECTION TRIGGERED or Page Loading Slow ⚠️");
     console.log("👉 Please switch to the browser window.");
     console.log("👉 SOLVE THE CAPTCHA / VERIFY YOU ARE HUMAN.");
     console.log("⏳ Script is waiting for your profile to load...");
-    await page.waitForSelector('article, div[role="link"]', { timeout: 0 });
+    await page.waitForSelector('a[data-action="show-post-card"], article, div[role="article"]', { timeout: 0 });
     console.log("✅ Verification passed! Resuming scraper...");
   }
 
@@ -107,68 +107,90 @@ function normaliseDate(raw) {
   while (true) {
     const newStories = await page.evaluate(() => {
       const data     = [];
+      // Updated selectors for current Medium structure
       const articles = document.querySelectorAll(
-        'div[role="link"], article, [data-testid="post-preview"]'
+        'a[data-action="show-post-card"], article, div[role="article"], div.js-postPreview'
       );
 
       articles.forEach((article) => {
-        const titleEl = article.querySelector("h2");
-        const linkEl  = article.querySelector('a[href*="/"]');
-        const imgEl   = article.querySelector("img");
+        // Find the actual container - sometimes the link itself is the container
+        const container = article.tagName === 'A' ? article : article;
+        
+        // Title selectors - try multiple approaches
+        let titleEl = container.querySelector("h2, h3, [data-testid='title']");
+        if (!titleEl) {
+          const headings = container.querySelectorAll('h1, h2, h3, h4');
+          if (headings.length > 0) titleEl = headings[0];
+        }
 
-        // Medium renders the publish date in a <span> that sits inside a <div>
-        // alongside the read-time. We try several selectors in priority order.
+        // Link selectors - prioritize direct href on the container or find anchor
+        let linkEl = container.tagName === 'A' ? container : container.querySelector('a[href*="/@"]');
+        if (!linkEl) {
+          const anchors = container.querySelectorAll('a');
+          for (const a of anchors) {
+            if (a.href && a.href.includes('/')) {
+              linkEl = a;
+              break;
+            }
+          }
+        }
+
+        // Image selectors
+        const imgEl = container.querySelector("img[alt], img[src*='miro'], img[src*='images']");
+
+        // Date selectors - updated for current Medium markup
         const dateSelectors = [
           "time",                          // semantic <time> element
           '[data-testid="storyPublishDate"]',
-          'span[aria-label]',              // sometimes used for dates
-          // Generic: any small <span> whose text looks like a date / relative time
+          'span[aria-label*="ago"]',        // relative time spans
+          'span[data-tooltip]',             // tooltips with dates
+          'span.vy, span.vw',               // Medium's common date span classes
         ];
 
         let rawDate = "";
         for (const sel of dateSelectors) {
-          const el = article.querySelector(sel);
+          const el = container.querySelector(sel);
           if (el) {
             // Prefer the datetime attribute on <time>, fall back to innerText
-            rawDate = el.getAttribute("datetime") || el.innerText || "";
+            rawDate = el.getAttribute("datetime") || el.getAttribute("title") || el.innerText || "";
             if (rawDate.trim()) break;
           }
         }
 
-        // Fallback: scan all <span>, <p>, and <div> elements for something that looks like a date.
-        // We read the first text node directly (not innerText) to avoid picking up child element text,
-        // e.g. <div>5d ago<div>...claps...</div></div> → first text node is "5d ago".
+        // Fallback: scan all text nodes for date-like patterns
         if (!rawDate.trim()) {
-          const candidates = article.querySelectorAll("span, p, div");
-          for (const el of candidates) {
-            // Get only the direct text content (first text node), not descendant text
-            const firstTextNode = Array.from(el.childNodes).find(n => n.nodeType === 3);
-            const t = firstTextNode ? firstTextNode.textContent.trim() : "";
-            if (!t) continue;
-            // Strip optional leading action word before testing
-            const core = t.replace(/^(Published|Updated|Posted)\s+/i, "");
-            // Matches: "Oct 12, 2024" | "Oct 12" | "3d ago" | "5mins ago" | "just now"
-            if (
-              /^[A-Za-z]{3}\s+\d{1,2}(,\s*\d{4})?$/.test(core) ||
-              /^\d+\s*(d|min|mins|h)\s+ago$/i.test(core) ||
-              /^just now$/i.test(core)
-            ) {
-              rawDate = t; // pass the full string (with prefix) to normaliseDate
+          const allText = container.innerText || "";
+          // Look for date patterns in the text
+          const datePatterns = [
+            /\b[A-Za-z]{3}\s+\d{1,2},\s*\d{4}\b/,  // "Oct 12, 2024"
+            /\b[A-Za-z]{3}\s+\d{1,2}\b/,            // "Oct 12"
+            /\b\d+\s*d\s+ago\b/i,                   // "3d ago"
+            /\b\d+\s*min(?:ute)?s?\s+ago\b/i,       // "5mins ago"
+            /\b\d+\s*h(?:our)?\s+ago\b/i,           // "2h ago"
+            /\bjust now\b/i,                        // "just now"
+          ];
+          
+          for (const pattern of datePatterns) {
+            const match = allText.match(pattern);
+            if (match) {
+              rawDate = match[0];
               break;
             }
           }
         }
 
         if (titleEl && linkEl) {
-          let link = linkEl.href.split("?")[0];
+          let link = linkEl.href ? linkEl.href.split("?")[0] : "";
           let img  = imgEl ? imgEl.src : "No Image";
 
-          data.push({
-            title:   titleEl.innerText,
-            url:     link,
-            image:   img,
-            rawDate: rawDate.trim(),
-          });
+          if (link && titleEl.innerText) {
+            data.push({
+              title:   titleEl.innerText.trim(),
+              url:     link,
+              image:   img,
+              rawDate: rawDate.trim(),
+            });
+          }
         }
       });
       return data;
