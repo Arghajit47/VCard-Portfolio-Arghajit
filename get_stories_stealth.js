@@ -80,8 +80,8 @@ function normaliseDate(raw) {
 
   const page = await browser.newPage();
 
-  console.log(`navigating to https://medium.com/${USERNAME}/...`);
-  await page.goto(`https://medium.com/${USERNAME}/`, {
+  console.log(`navigating to https://medium.com/${USERNAME}`);
+  await page.goto(`https://medium.com/${USERNAME}`, {
     waitUntil: "networkidle2",
   });
 
