@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -130,21 +130,11 @@
 
             <li class="social-item">
               <a
-                href="https://www.instagram.com/asughan47"
+                href="https://pypi.org/user/arghajitsingha47/"
                 target="_blank"
                 class="social-link"
               >
-                <ion-icon name="logo-instagram"></ion-icon>
-              </a>
-            </li>
-
-            <li class="social-item">
-              <a
-                href="https://www.facebook.com/arghajit.singha.7"
-                target="_blank"
-                class="social-link"
-              >
-                <ion-icon name="logo-facebook"></ion-icon>
+                <ion-icon name="logo-python"></ion-icon>
               </a>
             </li>
           </ul>
@@ -186,10 +176,19 @@
           <!-- Search + Sort + Count toolbar -->
           <div class="blog-toolbar">
             <div class="blog-search-wrap">
-              <ion-icon name="search-outline" class="blog-search-icon"></ion-icon>
-              <input type="text" id="blog-search" class="blog-search-input" placeholder="Search blogs…" autocomplete="off" />
+              <ion-icon
+                name="search-outline"
+                class="blog-search-icon"
+              ></ion-icon>
+              <input
+                type="text"
+                id="blog-search"
+                class="blog-search-input"
+                placeholder="Search blogs…"
+                autocomplete="off"
+              />
             </div>
-          
+
             <div class="blog-sort-wrap">
               <label for="blog-sort" class="blog-sort-label">Sort:</label>
               <select id="blog-sort" class="blog-sort-select">
@@ -198,14 +197,18 @@
               </select>
             </div>
           </div>
-          
+
           <div class="blog-count-bar">
             <span id="blog-count-badge" class="blog-count-badge">0 posts</span>
           </div>
 
           <section class="blog-posts">
             <ul class="blog-posts-list" id="blog-posts-container"></ul>
-            <p id="blog-no-results" class="blog-no-results" style="display:none;">
+            <p
+              id="blog-no-results"
+              class="blog-no-results"
+              style="display: none"
+            >
               No blogs match your search.
             </p>
           </section>
@@ -222,13 +225,13 @@
         margin-bottom: 14px;
         flex-wrap: wrap;
       }
-    
+
       .blog-search-wrap {
         position: relative;
         flex: 1 1 180px;
         min-width: 0;
       }
-    
+
       .blog-search-icon {
         position: absolute;
         left: 13px;
@@ -238,7 +241,7 @@
         font-size: 16px;
         pointer-events: none;
       }
-    
+
       .blog-search-input {
         width: 100%;
         background: var(--eerie-black-2);
@@ -252,15 +255,15 @@
         outline: none;
         transition: border-color 0.2s ease;
       }
-    
+
       .blog-search-input::placeholder {
         color: var(--light-gray-70);
       }
-    
+
       .blog-search-input:focus {
         border-color: var(--orange-yellow-crayola);
       }
-    
+
       /* Sort */
       .blog-sort-wrap {
         display: flex;
@@ -268,14 +271,14 @@
         gap: 8px;
         flex-shrink: 0;
       }
-    
+
       .blog-sort-label {
         color: var(--light-gray-70);
         font-size: var(--fs-7);
         font-weight: var(--fw-300);
         white-space: nowrap;
       }
-    
+
       .blog-sort-select {
         background: var(--eerie-black-2);
         color: var(--white-2);
@@ -294,16 +297,16 @@
         background-position: right 10px center;
         transition: border-color 0.2s ease;
       }
-    
+
       .blog-sort-select:focus {
         border-color: var(--orange-yellow-crayola);
       }
-    
+
       /* Count badge */
       .blog-count-bar {
         margin-bottom: 18px;
       }
-    
+
       .blog-count-badge {
         display: inline-block;
         background: var(--bg-gradient-onyx);
@@ -315,7 +318,7 @@
         border: 1px solid var(--jet);
         letter-spacing: 0.03em;
       }
-    
+
       /* No-results message */
       .blog-no-results {
         color: var(--light-gray-70);
@@ -324,21 +327,24 @@
         text-align: center;
         padding: 30px 0;
       }
-    
+
       /* Mobile: stack toolbar vertically on very small screens */
       @media (max-width: 380px) {
         .blog-toolbar {
           flex-direction: column;
           align-items: stretch;
         }
-    
+
         .blog-sort-wrap {
           justify-content: flex-end;
         }
       }
     </style>
 
-    <script src="blog_data.js" onerror="window._blogDataLoadFailed=true"></script>
+    <script
+      src="blog_data.js"
+      onerror="window._blogDataLoadFailed = true"
+    ></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -350,12 +356,18 @@
 
         // Guard: data not loaded
         if (window._blogDataLoadFailed) {
-          container.innerHTML = "<p>Could not load blog_data.js. Please run <code>npm run get-stories</code> locally, or check that the file exists.</p>";
+          container.innerHTML =
+            "<p>Could not load blog_data.js. Please run <code>npm run get-stories</code> locally, or check that the file exists.</p>";
           countBadge.textContent = "0 posts";
           return;
         }
-        if (typeof mediumStoriesData === "undefined" || !Array.isArray(mediumStoriesData) || mediumStoriesData.length === 0) {
-          container.innerHTML = "<p>No blog posts found. Run <code>npm run get-stories</code> to generate blog_data.js.</p>";
+        if (
+          typeof mediumStoriesData === "undefined" ||
+          !Array.isArray(mediumStoriesData) ||
+          mediumStoriesData.length === 0
+        ) {
+          container.innerHTML =
+            "<p>No blog posts found. Run <code>npm run get-stories</code> to generate blog_data.js.</p>";
           countBadge.textContent = "0 posts";
           return;
         }
@@ -371,7 +383,7 @@
         const allPosts = mediumStoriesData.map((post, idx) => ({
           ...post,
           _idx: idx,
-          _ts: parseDDMMYYYY(post.date),   // null when date is absent
+          _ts: parseDDMMYYYY(post.date), // null when date is absent
         }));
 
         function buildCard(post) {
@@ -405,8 +417,8 @@
           const order = sortSelect.value; // "newest" | "oldest"
 
           // Filter
-          let filtered = allPosts.filter(p =>
-            p.title.toLowerCase().includes(query)
+          let filtered = allPosts.filter((p) =>
+            p.title.toLowerCase().includes(query),
           );
 
           // Sort by real date; posts without a date always go to the end
