@@ -1,5 +1,7 @@
 # VCard-Portfolio-Arghajit
 
+[![Deploy to GitHub Pages](https://github.com/Arghajit47/VCard-Portfolio-Arghajit/actions/workflows/vcard.yml/badge.svg)](https://github.com/Arghajit47/VCard-Portfolio-Arghajit/actions/workflows/vcard.yml) [![pages-build-deployment](https://github.com/Arghajit47/VCard-Portfolio-Arghajit/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Arghajit47/VCard-Portfolio-Arghajit/actions/workflows/pages/pages-build-deployment)
+
 ## Description
 
 VCard-Portfolio-Arghajit is a personal portfolio website that showcases my projects, skills, and contact information in a visually appealing manner.
